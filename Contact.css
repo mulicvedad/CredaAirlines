@@ -1,0 +1,57 @@
+.column.three.image{
+    height: 30px;
+    background-color: #81a594;
+}
+
+.column.nine.contact-content{
+    height: 30px;
+    width: 50%;
+    background-color: #81a594;
+
+}
+
+.column.twelve.contact-title{
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 30px;
+}
+
+.column.six.contact{
+    margin-left: 25%;
+}
+
+.contact-icon-image{
+    float: right;
+    display: inline-block;
+    max-height: 30px;
+    max-width: 100%;
+}
+
+p.contact{
+    font-weight: bold;
+    text-indent: 5px;
+    margin-top: 5px;
+
+
+}
+
+p.contact-title{
+    font-weight: bold;
+    text-indent: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.row.contact-container{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 699px){
+    .column.six.contact{
+        margin-left: 10px;
+        width: 100%;
+    }
+
+
+}

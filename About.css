@@ -1,0 +1,29 @@
+.column.twelve.description-header{
+    text-align: center;
+}
+.description-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.description-title-small{
+    font-style: italic;
+    color: #81a594;
+}
+
+.about-title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+.column.eleven.description-content{
+    margin-left: 4%;
+    padding: 10px;
+    background-color: #81a594;
+    border-radius: 10px;
+}
