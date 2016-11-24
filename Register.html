@@ -4,48 +4,9 @@
     <title>Creda Airlines</title>
     <link rel="stylesheet" href="SharedStyles.css">
     <link rel="stylesheet" href="Register.css">
+    <script src="register.js"></script>
 </head>
 <body>
-<div class="headerContainer">
-    <div class="pageHeader">
-        <div class="header top">
-            <p id="titleText">
-                Creda Airlines
-            </p>
-        </div>
-        <div class="header search">
-            <div class="search-wrapper">
-                <span class="icon-search"></span>
-                <form id="search-form">
-                    <input id="searchField" type="search" placeholder="Search">
-                </form>
-
-            </div>
-        </div>
-        <div class="header bottom">
-            <ul class="nav">
-                <li><a href="MainPage.html">HOME</a> </li>
-                <li><a href="MainPage.html">FLIGHTS</a> </li>
-                <li><a href="MainPage.html">MAKE A RESERVATION</a></li>
-                <li><a href="About.html">ABOUT US</a> </li>
-                <li> <a href="Contact.html">CONTACT</a> </li>
-                <li> <a href="Register.html">REGISTER</a> </li>
-            </ul>
-            <div class="dropdown">
-                <span>Menu</span>
-                <div class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
-                    <li class="dropdown-item"><a href="About.html">About us</a> </li>
-                    <li class="dropdown-item"> <a href="Contact.html">Contact</a> </li>
-                    <li class="dropdown-item"> <a href="Register.html">Register</a> </li>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="row main">
 
@@ -55,14 +16,16 @@
                     <p class="register-account-label">Create new account</p>
                 </div>
             </div>
-            <form>
+            <form name="registrationForm" onsubmit="return registerFormValidation()">
                 <div class="row">
 
                     <div class="column five register-field">
                         <p class="register-label">First name:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-first-name" type="text">
+                        <input onblur="validateFirstNameField(this)" class="register-field" name="registerFirstName" type="text">
+                        <p class="errorField" id="firstNameErrorField">
+                        </p>
                     </div>
 
                 </div>
@@ -72,7 +35,9 @@
                         <p class="register-label">Last name:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-last-name" type="text">
+                        <input onblur="validateLastNameField(this)" class="register-field" name="registerLastName" type="text">
+                        <p class="errorField" id="lastNameErrorField">
+                        </p>
                     </div>
 
                 </div>
@@ -82,7 +47,9 @@
                         <p class="register-label">Email:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-email" type="text">
+                        <input onblur="validateEmail(this)" class="register-field" name="registerEmail" type="text">
+                        <p class="errorField" id="emailErrorField">
+                        </p>
                     </div>
 
                 </div>
@@ -92,7 +59,9 @@
                         <p class="register-label">Username:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-username" type="text">
+                        <input onblur="validateUsernameField(this)" class="register-field" name="registerUsername" type="text">
+                        <p class="errorField" id="usernameErrorField">
+                        </p>
                     </div>
 
                 </div>
@@ -103,7 +72,9 @@
                         <p class="register-label">Password:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-password" type="text">
+                        <input onblur="validatePassword(this)" class="register-field" name="registerPassword" type="password">
+                        <p class="errorField" id="passwordErrorField">
+                        </p>
                     </div>
 
                 </div>
@@ -113,18 +84,20 @@
                         <p class="register-label">Confirm password:</p>
                     </div>
                     <div class="column seven register-field">
-                        <input class="register-field" id="register-confirm-password" type="text">
+                        <input onblur="validateConfirmPassword(this)" class="register-field" name="registerConfirmPassword" type="password">
+                        <p class="errorField" id="confirmPasswordErrorField">
+                        </p>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="column twelve create-account">
-                        <input id="terms-checkbox" type="checkbox" value="checked">I agree on terms of service
+                        <input name="termsCheckbox" type="checkbox" checked> I agree on terms of service
                     </div>
                 </div>
                 <div class="row">
                     <div class="column twelve create-account">
-                        <input id="register-button" type="button" value="Register">
+                        <input name="registerButton" type="submit" value="Register">
                     </div>
                 </div>
 

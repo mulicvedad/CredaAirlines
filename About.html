@@ -4,48 +4,9 @@
     <title>Creda Airlines</title>
     <link rel="stylesheet" href="SharedStyles.css">
     <link rel="stylesheet" href="About.css">
+    <script src="about.js"></script>
 </head>
 <body>
-<div class="headerContainer">
-    <div class="pageHeader">
-        <div class="header top">
-            <p id="titleText">
-                Creda Airlines
-            </p>
-        </div>
-        <div class="header search">
-            <div class="search-wrapper">
-                <span class="icon-search"></span>
-                <form id="search-form">
-                    <input id="searchField" type="search" placeholder="Search">
-                </form>
-
-            </div>
-        </div>
-        <div class="header bottom">
-            <ul class="nav">
-                <li><a href="MainPage.html">HOME</a> </li>
-                <li><a href="MainPage.html">FLIGHTS</a> </li>
-                <li><a href="MainPage.html">MAKE A RESERVATION</a></li>
-                <li><a href="About.html">ABOUT US</a> </li>
-                <li> <a href="Contact.html">CONTACT</a> </li>
-                <li> <a href="Register.html">REGISTER</a> </li>
-            </ul>
-            <div class="dropdown">
-                <span>Menu</span>
-                <div class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
-                    <li class="dropdown-item"><a href="About.html">About us</a> </li>
-                    <li class="dropdown-item"> <a href="Contact.html">Contact</a> </li>
-                    <li class="dropdown-item"> <a href="Register.html">Register</a> </li>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="row main">
     <div class="column twelve description-container">
         <div class="column twelve description-header">
@@ -93,6 +54,45 @@
                 successor in 1908, and easily defeated William Jennings Bryan for the presidency
             </p>
         </div>
+    </div>
+    <div class="row">
+        <div class="column twelve galleryHeader">
+            Gallery
+        </div>
+    </div>
+    <div class="column ten gallery" >
+        <div class="row">
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item1.jpg">
+            </div>
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item2.jpg">
+            </div>
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item3.jpg">
+            </div>
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item4.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="column ten gallery" >
+        <div class="row">
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item5.jpg">
+            </div>
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item6.jpg">
+            </div>
+            <div class="column three image">
+                <img onclick="openImage(this)" src="Assets/Images/gallery/item2.jpg">
+            </div>
+
+        </div>
+    </div>
+    <div class="imagePresentation" id="imagePresentationContainer">
+            <button id="closeButton">X</button>
+            <img id="imageFull">
     </div>
 
 

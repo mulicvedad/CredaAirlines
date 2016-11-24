@@ -81,6 +81,8 @@ body{
     padding:0;
     text-align:center;
 }
+
+
 .nav li{
     display:inline;
 }
@@ -103,7 +105,9 @@ body{
 .nav  a:hover{
     color:white;
     background-color: #4c4b48;
-    text-underline: dotted;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    border-bottom: 4px solid lightblue;
 }
 
 
@@ -305,9 +309,6 @@ body{
     z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 li.dropdown-item{
     text-decoration: none;
@@ -343,7 +344,7 @@ li.dropdown-item  a:visited{
 
 li.dropdown-item  a:hover{
     color:white;
-    background-color: #898885;
+    background-color: #00628b;
     text-underline: dotted;
     padding: 5px;
     width: 100%;
@@ -405,4 +406,13 @@ li.dropdown-item  a:hover{
     .column.nine.main{
         width:100%;
     }
+}
+
+#loginErrorField{
+    color: darkred;
+    font-size: 12px;
+    width:100%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center;
 }

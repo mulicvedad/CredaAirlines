@@ -20,7 +20,6 @@
 .column.five.register-field{
     height:30px;
     text-align: right;
-
 }
 .register-account-label{
     width:100%;
@@ -37,6 +36,8 @@
 
 input.register-field{
     width:50%;
+    float: left;
+    display: inline-block;
 }
 
 #register-button{
@@ -71,49 +72,13 @@ input.register-field{
     }
 
 }
-/*@media screen and (max-width: 599px){
-    .column.eight.register-container{
-        background-color: wheat;
-        margin-top:40px;
-        margin-left:0px;
-        width:100%;
-    }
-    input.register-field{
-        width:100%;
-    }
 
-    .column.twelve.create-account{
-        text-align: center;
-    }
-    .column.seven.register-field{
-
-        width: 100%;
-    }
-
-    .column.five.register-field{
-        width: 0px;
-        height: 0px;
-        margin: 0px;
-    }
-
-    .register-label{
-        width: 0px;
-        height: 0px;
-        visibility: hidden;
-        margin: 0px;
-    }
-
-    input.register-field{
-        width:100%;
-        text-indent: 15px;
-    }
-
-    #register-first-name{
-
-    }
-
-
-
-
-
-}*/
+p.errorField{
+    color: darkred;
+    float: left;
+    display: inline-block;
+    margin-top:7px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    font-size: 12px;
+}
