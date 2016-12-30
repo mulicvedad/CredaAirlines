@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <title>Creda Airlines</title>
@@ -6,7 +7,51 @@
     <link rel="stylesheet" href="About.css">
     <script src="about.js"></script>
 </head>
-<body>
+
+<body onload="mainPageLoad(0)">
+
+<div class="headerContainer">
+    <div class="pageHeader">
+        <div class="header top">
+            <p id="titleText">
+                Creda Airlines
+            </p>
+        </div>
+        <div class="header search">
+            <div class="search-wrapper">
+                <span class="icon-search"></span>
+                <form onsubmit="return validateSearch()" id="search-form">
+                    <input name="searchField" id="searchField" type="search">
+                </form>
+
+            </div>
+        </div>
+        <div class="header bottom">
+            <ul class="nav">
+                <li><a href="MainPage.php">HOME</a> </li>
+                <li><a onclick="navigationItemClicked(1)" href="flights.php">FLIGHTS</a> </li>
+                <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
+                <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
+                <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
+                <li><a onclick="navigationItemClicked(5)" href="Register.html">REGISTER</a> </li>
+                <li><a id="admin-panel" onclick="navigationItemClicked(5)" href="">ADMIN PANEL</a> </li>
+            </ul>
+            <div class="dropdown">
+                <span onclick="dropDownClicked(this)">Menu</span>
+                <div id="dropdownContent" class="dropdown-content">
+                    <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('flights.php')">Flights</a> </li>
+                    <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('About.html')">About us</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('Contact.html')">Contact</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Register</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Admin Panel</a> </li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row main">
     <div class="column twelve description-container">
         <div class="column twelve description-header">

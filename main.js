@@ -1,8 +1,8 @@
 var isDropdownActive = false;
-function mainPageLoad() {
+function mainPageLoad(num) {
     var body = document.getElementsByTagName("body")[0];
     body.addEventListener("click", bodyContentClicked, true);
-    navigationItemClicked(0);
+    navigationItemClicked(num);
 
 }
 function loadSubpage(pageUrl) {

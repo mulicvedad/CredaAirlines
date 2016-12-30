@@ -416,3 +416,59 @@ li.dropdown-item  a:hover{
     margin-bottom: 0px;
     text-align: center;
 }
+
+#user-info{
+    background-color: #81a594;
+    visibility: visible;
+
+}
+
+#user-info-p{
+    color: white;
+    padding-right: 10px;
+    margin: 5px;
+    float: right;
+
+}
+
+#user-info-button{
+    margin: 5px;
+    float: right;
+}
+
+#admin-panel{
+    color: darkred;
+    background-color: #898885;
+    visibility: hidden;
+}
+
+button.report{
+    float: left;
+    margin: 5px;
+
+    background-color: #00628b;
+    color: white;
+    border-radius: 5px;
+}
+
+button.report:hover{
+    background-color: #898885;
+    border-radius: 5px;
+}
+
+a.report:link{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color:white;
+    width: 100%;
+
+}
+
+a.report:hover{
+    text-decoration: none;
+    color:black;
+    padding: 5px;
+    width: 100%;
+
+}

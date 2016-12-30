@@ -8,7 +8,8 @@
     <script src="about.js"></script>
 
 </head>
-<body onload="mainPageLoad()">
+<body onload="mainPageLoad(0)">
+
 <div class="headerContainer">
     <div class="pageHeader">
         <div class="header top">
@@ -27,30 +28,65 @@
         </div>
         <div class="header bottom">
             <ul class="nav">
-                <li><a href="MainPage.html">HOME</a> </li>
-                <li><a href="MainPage.html">FLIGHTS</a> </li>
-                <li><a href="MainPage.html">MAKE A RESERVATION</a></li>
-                <li><a onclick="navigationItemClicked(3)" href="javascript:loadSubpage('About.html')">ABOUT US</a> </li>
-                <li><a onclick="navigationItemClicked(4)" href="javascript:loadSubpage('Contact.html')">CONTACT</a> </li>
-                <li><a onclick="navigationItemClicked(5)" href="javascript:loadSubpage('Register.html')">REGISTER</a> </li>
+                <li><a href="MainPage.php">HOME</a> </li>
+                <li><a onclick="navigationItemClicked(1)" href="flights.php">FLIGHTS</a> </li>
+                <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
+                <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
+                <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
+                <li><a onclick="navigationItemClicked(5)" href="Register.html">REGISTER</a> </li>
+                <li><a id="admin-panel" onclick="navigationItemClicked(5)" href="">ADMIN PANEL</a> </li>
             </ul>
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
                 <div id="dropdownContent" class="dropdown-content">
                     <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Flights</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('flights.php')">Flights</a> </li>
                     <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
                     <li class="dropdown-item"><a href="javascript:loadSubpage('About.html')">About us</a> </li>
                     <li class="dropdown-item"><a href="javascript:loadSubpage('Contact.html')">Contact</a> </li>
                     <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Register</a> </li>
+                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Admin Panel</a> </li>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<?php
+    session_start();
+
+    if(isset($_SESSION["username"])){
+        if($_SESSION["username"]== "admin"){
+
+            echo "<div class='row'>";
+            echo "<div class='column twelve' id='user-info'>";
+            echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
+            echo "<button class='report'> <a class='report' href='generate_csv.php'>CSV Report </a> </button>";
+            echo "<button id='user-info-button'> <a href='logout.php'>Log Out </a> </button>";
+            echo "<p id='user-info-p'>Logged in as admin  </p>";
+            echo "</div>";
+            echo "</div>";
+
+            echo "<script>";
+            echo "document.getElementById('admin-panel').style.visibility='visible';";
+            echo '</script>';
+        }
+    }
+    else{
+
+    }
+
+?>
+
+<!--div class="row">
+    <div class="column twelve" id="user-info">
+        <button id="user-info-button"> <a href="logout.php">Log Out </a> </button>
+        <p id="user-info-p">Logged in as admin  </p>
+    </div>
+</div-->
+
 <div class="row main" id="subpageContainer">
-    <div class="column nine main">
+    <div class="column nine main" id="news-container-div">
         <div class="column eleven news-container">
             <div class="row">
                 <div class="column twelve title">
@@ -138,17 +174,19 @@
         </div>
 
     </div>
-    <div class="column three right">
+
+    <div class="column three right" id="login-div">
+
         <div class="row">
             <div class="column twelve right login">
                 <div class="column ten login">
-                    <form id="login-form">
-                        <input onblur="validateLoginUsernameField(this)" id="login-username-textfield" type="text" placeholder="Username">
-                        <input onblur="validateLoginPassword(this)" id="login-password-textfield" type="password" placeholder="Password">
+                    <form id="login-form" action="login.php" method="post" onsubmit="return validateLogin()">
+                        <input onblur="validateLoginUsernameField(this)" id="login-username-textfield" name="login-username" type="text" placeholder="Username">
+                        <input onblur="validateLoginPassword(this)" id="login-password-textfield" name="login-password" type="password" placeholder="Password">
                         <div class="row">
                             <div class="column twelve">
                                 <p id="loginErrorField"></p>
-                                <input id="login-button" type="button" value="Log in">
+                                <input id="login-button" type="submit" value="Log in">
                             </div>
                         </div>
                     </form>
@@ -164,7 +202,22 @@
 
     </div>
 </div>
+<?php
 
+if(isset($_SESSION["username"])){
+    if($_SESSION["username"]== "admin"){
+
+        echo "<script>";
+        echo "document.getElementById('login-div').style.visibility ='hidden';";
+        echo "document.getElementById('login-div').style.width ='0px';";
+
+        echo "document.getElementById('news-container-div').style.width ='100%';";
+
+        echo "</script>";
+    }
+}
+
+?>
 
 </body>
 </html>
