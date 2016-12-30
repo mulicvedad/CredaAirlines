@@ -156,3 +156,24 @@ function bodyContentClicked() {
         dropdownContent.style.display = "none";
     }
 }
+
+function performSearch(searchString) {
+
+    if(searchString.length==0){
+        document.getElementById("searchResultsContainer").innerHTML="";
+        document.getElementById("searchResultsContainer").style.visibility="hidden";
+        return;
+    }
+    ajax=new XMLHttpRequest();
+
+    ajax.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+            document.getElementById("searchResultsContainer").innerHTML=this.responseText;
+            document.getElementById("searchResultsContainer").style.visibility="visible";
+        }
+    }
+
+    ajax.open("GET","search.php?query="+searchString,true);
+    ajax.send();
+
+}

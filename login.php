@@ -4,6 +4,7 @@ parse_str(file_get_contents('php://input'), $_POST);
 
 include "Account.php";
 include "Flight.php";
+require "validation.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username=validateInput($_POST["login-username"]);
@@ -24,5 +25,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 function validateInput($data){
-    return $data;
+    return preventXSS($data);
 }

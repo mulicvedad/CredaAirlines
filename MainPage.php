@@ -21,9 +21,8 @@
             <div class="search-wrapper">
                 <span class="icon-search"></span>
                 <form onsubmit="return validateSearch()" id="search-form">
-                    <input name="searchField" id="searchField" type="search">
+                    <input name="searchField" id="searchField" type="text" onkeyup="performSearch(this.value)">
                 </form>
-
             </div>
         </div>
         <div class="header bottom">
@@ -33,25 +32,25 @@
                 <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
                 <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
                 <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
-                <li><a onclick="navigationItemClicked(5)" href="Register.html">REGISTER</a> </li>
-                <li><a id="admin-panel" onclick="navigationItemClicked(5)" href="">ADMIN PANEL</a> </li>
+                <li><a onclick="navigationItemClicked(5)" href="Register.php">REGISTER</a> </li>
             </ul>
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
                 <div id="dropdownContent" class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('flights.php')">Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('About.html')">About us</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Contact.html')">Contact</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Register</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Admin Panel</a> </li>
+                    <li class="dropdown-item"><a href="MainPage.php">Home</a> </li>
+                    <li class="dropdown-item"><a href='flights.php'>Flights</a> </li>
+                    <li class="dropdown-item"><a href="MainPage.php">Make a reservation</a></li>
+                    <li class="dropdown-item"><a href="About.html">About us</a> </li>
+                    <li class="dropdown-item"><a href="Contact.html">Contact</a> </li>
+                    <li class="dropdown-item"><a href="Register.php">Register</a> </li>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div id="searchResultsContainer">
 
+</div>
 <?php
     session_start();
 
@@ -60,16 +59,13 @@
 
             echo "<div class='row'>";
             echo "<div class='column twelve' id='user-info'>";
-            echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
             echo "<button class='report'> <a class='report' href='generate_csv.php'>CSV Report </a> </button>";
+            echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
             echo "<button id='user-info-button'> <a href='logout.php'>Log Out </a> </button>";
             echo "<p id='user-info-p'>Logged in as admin  </p>";
             echo "</div>";
             echo "</div>";
 
-            echo "<script>";
-            echo "document.getElementById('admin-panel').style.visibility='visible';";
-            echo '</script>';
         }
     }
     else{
@@ -78,12 +74,6 @@
 
 ?>
 
-<!--div class="row">
-    <div class="column twelve" id="user-info">
-        <button id="user-info-button"> <a href="logout.php">Log Out </a> </button>
-        <p id="user-info-p">Logged in as admin  </p>
-    </div>
-</div-->
 
 <div class="row main" id="subpageContainer">
     <div class="column nine main" id="news-container-div">
@@ -113,7 +103,7 @@
 
             </div>
 
-            <a class="read-more-link" href="MainPage.html"> Read more... </a>
+            <a class="read-more-link" href="MainPage.php"> Read more... </a>
 
 
         </div>
@@ -140,7 +130,7 @@
                         successor in 1908, and easily defeated William Jennings Bryan for the presidency. In the White...
                 </div>
             </div>
-            <a class="read-more-link" href="MainPage.html"> Read more... </a>
+            <a class="read-more-link" href="MainPage.php"> Read more... </a>
         </div>
         <div class="column eleven news-container">
             <div class="row">
@@ -168,7 +158,7 @@
 
             </div>
 
-            <a class="read-more-link" href="MainPage.html"> Read more... </a>
+            <a class="read-more-link" href="MainPage.php"> Read more... </a>
 
 
         </div>
@@ -191,7 +181,7 @@
                         </div>
                     </form>
                     <div class="row">
-                        <div class="column twelve">
+                        <div class="column twelve" id="createAccDiv">
                             <a id="create-account-link" href="javascript:loadSubpage('Register.html')"> New here? Create account now. </a>
                         </div>
                     </div>

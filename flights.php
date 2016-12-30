@@ -15,7 +15,9 @@
 <?php
 
 
-include "Flight.php";
+require "Flight.php";
+require "validation.php";
+
 $xml=simplexml_load_file("data/xml/flights.xml");
 if(isset($_REQUEST["Add"])) {
 
@@ -72,7 +74,7 @@ else{
 
 
 function validateInput($data){
-    return htmlspecialchars($data);
+    return preventXSS($data);
 }
 ?>
 <div class="headerContainer">
@@ -83,13 +85,7 @@ function validateInput($data){
             </p>
         </div>
         <div class="header search">
-            <div class="search-wrapper">
-                <span class="icon-search"></span>
-                <form onsubmit="return validateSearch()" id="search-form">
-                    <input name="searchField" id="searchField" type="search">
-                </form>
 
-            </div>
         </div>
         <div class="header bottom">
             <ul class="nav">
@@ -98,19 +94,17 @@ function validateInput($data){
                 <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
                 <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
                 <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
-                <li><a onclick="navigationItemClicked(5)" href="Register.html">REGISTER</a> </li>
-                <li><a id="admin-panel" onclick="navigationItemClicked(5)" href="">ADMIN PANEL</a> </li>
+                <li><a onclick="navigationItemClicked(5)" href="Register.php">REGISTER</a> </li>
             </ul>
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
                 <div id="dropdownContent" class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.html">Home</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('flights.php')">Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.html">Make a reservation</a></li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('About.html')">About us</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Contact.html')">Contact</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Register</a> </li>
-                    <li class="dropdown-item"><a href="javascript:loadSubpage('Register.html')">Admin Panel</a> </li>
+                    <li class="dropdown-item"><a href="MainPage.php">Home</a> </li>
+                    <li class="dropdown-item"><a href='flights.php'>Flights</a> </li>
+                    <li class="dropdown-item"><a href="MainPage.php">Make a reservation</a></li>
+                    <li class="dropdown-item"><a href="About.html">About us</a> </li>
+                    <li class="dropdown-item"><a href="Contact.html">Contact</a> </li>
+                    <li class="dropdown-item"><a href="Register.php">Register</a> </li>
                 </div>
             </div>
         </div>
@@ -181,9 +175,9 @@ function validateInput($data){
 
                 if($isAdmin && !$isEditMode){
                     echo "<tr>";
-                    echo "<td><input type='text' name='from'></td>";
-                    echo "<td><input type='text' name='to'></td>";
-                    echo "<td><input type='datetime' name='date'></td>";
+                    echo "<td><input type='text' name='from' placeholder='City 1'></td>";
+                    echo "<td><input type='text' name='to' placeholder='City 2'></td>";
+                    echo "<td><input type='text' name='date' placeholder='dd/mm/yyyy hh:mm'></td>";
                     echo "<td><input type='number' name='duration'></td>";
                     echo "<td><input type='number' name='cost'></td>";
                     echo "<td><input style='background-color: darkgreen' name='Add' type='submit' value='Add'></td>";

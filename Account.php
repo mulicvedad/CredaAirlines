@@ -2,7 +2,7 @@
 
 class Account
 {
-    private static $XML_FILEPATH="data/xaml/xml_account";
+    private static $XML_FILEPATH="data/xml/xml_account";
     private static $XML_NODE_NAME="account";
     public $firstName;
     public $lastName;

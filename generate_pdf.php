@@ -52,7 +52,7 @@ $pdf->SetTitle("Flights report");
 
 $pdf->SetFillColor(224,235,255);
 $pdf->Cell(0, 10, "Zakazani letovi","D",1,"C",true);
-//$pdf->Ln();
+$pdf->Ln();
 $header=array("FROM", "TO", "DATE", "DURATION", "COST");
 $pdf->flightsTable($header, $xml);
 
