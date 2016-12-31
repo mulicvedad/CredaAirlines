@@ -53,25 +53,25 @@
 
 </div>
 <?php
-    session_start();
+session_start();
 
-    if(isset($_SESSION["username"])){
-        if($_SESSION["username"]== "admin"){
+if(isset($_SESSION["username"])){
+    if($_SESSION["username"]== "admin"){
 
-            echo "<div class='row'>";
-            echo "<div class='column twelve' id='user-info'>";
-            echo "<button class='report'> <a class='report' href='generate_csv.php'>CSV Report </a> </button>";
-            echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
-            echo "<button id='user-info-button'> <a href='logout.php'>Log Out </a> </button>";
-            echo "<p id='user-info-p'>Logged in as admin  </p>";
-            echo "</div>";
-            echo "</div>";
-
-        }
-    }
-    else{
+        echo "<div class='row'>";
+        echo "<div class='column twelve' id='user-info'>";
+        echo "<button class='report'> <a class='report' href='generate_csv.php'>CSV Report </a> </button>";
+        echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
+        echo "<button id='user-info-button'> <a href='logout.php'>Log Out </a> </button>";
+        echo "<p id='user-info-p'>Logged in as admin  </p>";
+        echo "</div>";
+        echo "</div>";
 
     }
+}
+else{
+
+}
 
 ?>
 
