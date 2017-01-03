@@ -1,3 +1,6 @@
+username: admin
+password: adminadmin
+
 1)Sta je uraðeno, a sta nije?
  Serijalizacija registrovanih korisnika i letova.
  Admin nakon logina koji se nalazi na MainPage-u ima mogucnost da dodaje, mijenja,
