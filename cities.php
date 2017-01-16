@@ -47,7 +47,7 @@ if(isset($_REQUEST["Add"])) {
 else{
 
   try{
-      $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+      $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
       $connection->exec("set names utf8");
           if($cities=$connection->query("select * from city")){
               if($connection->query("select count(*) from city")->fetchColumn()){
@@ -182,7 +182,7 @@ function validateInput($data){
                 $isAdmin=true;
 
                 try{
-                    $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                    $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
                     $connection->exec("set names utf8");
                         if($cities=$connection->query("select * from city")){
                             if($connection->query("select count(*) from city")->fetchColumn()){

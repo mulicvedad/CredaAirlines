@@ -16,7 +16,7 @@ class City extends DBEntity
 
     public function saveToDb(){
       try {
-        $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+        $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
         $connection->exec("set names utf8");
 
         //we will not allow cities with same name
@@ -53,7 +53,7 @@ class City extends DBEntity
     }
     public function updateDb(){
       try {
-        $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+        $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
         $connection->exec("set names utf8");
 
         //check if city exists
@@ -83,7 +83,7 @@ class City extends DBEntity
     }
     public function deleteFromDb(){
       try {
-        $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+        $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
         $connection->exec("set names utf8");
         //check if city exists
         $sql="select count(*) from city where id=?";

@@ -15,7 +15,7 @@ function rest_get($request, $data) {
       exit();
     }
     try {
-      $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+      $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
       $connection->exec("set names utf8");
 
       $tmp=$connection->prepare("select id from city where lower(name)=lower(?) ; ");

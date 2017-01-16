@@ -140,7 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                           }
                           if($isAdmin){
                             try{
-                                 $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                                 $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
                                  $connection->exec("set names utf8");
                                if($users=$connection->query("select * from user")){
                                    if($connection->query("select count(*) from user")->fetchColumn()){
@@ -223,7 +223,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="column seven register-field">
                         <?php
                         try{
-                             $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                             $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
                              $connection->exec("set names utf8");
                            if($cities=$connection->query("select * from city")){
                                if($connection->query("select count(*) from city")->fetchColumn()){

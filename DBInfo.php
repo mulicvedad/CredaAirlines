@@ -6,9 +6,9 @@ class DBInfo
 //  public static $USERNAME_OLD="korisnik";
 //  public static $PASSWORD_OLD="korisnik";
 
-  $env= getenv('FLIGHTSDB_SERVICE_HOST');
 
-  public static $DB_CONNECTION_STRING="mysql:host=" . $env . ";port=3306;dbname=flightsdb";
+
+  //public static $DB_CONNECTION_STRING="mysql:host=localhost;port=1312;dbname=wt_creda";
   public static $USERNAME="creda";
   public static $PASSWORD="asvordpanjo";
 
@@ -22,6 +22,11 @@ class DBInfo
     else if($errCode==3){
       return "Database error.";
     }
+  }
+  public static function DB_CONNECTION_STRING(){
+    $env= getenv('MYSQL_SERVICE_HOST');
+    $DB_CONNECTION_STRING="mysql:host="  . $env . ";port=3306;dbname=flightsdb";
+    return $DB_CONNECTION_STRING;
   }
 }
 

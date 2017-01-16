@@ -54,7 +54,7 @@ if(isset($_REQUEST["Add"])) {
 }
 else{
   try{
-      $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+      $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
       $connection->exec("set names utf8");
       if($flights=$connection->query("select * from flight")){
           if($connection->query("select count(*) from flight")->fetchColumn()){
@@ -138,7 +138,7 @@ else{
 
    }
    catch(PDOException $e){
-       die($e->errorInfo());
+      // die($e->errorInfo());
    }
 }
 
@@ -207,7 +207,7 @@ function validateInput($data){
                         $isAdmin=true;
                     }
                 }
-                $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
                 $connection->exec("set names utf8");
                 $flights=$connection->query("select * from flight");
                 $results=$flights->fetchAll();
@@ -247,7 +247,7 @@ function validateInput($data){
 
                         }
                         catch(PDOException $e){
-                            die($e->errorInfo());
+                          //  die($e->errorInfo());
                         }
                             echo "<td><input  type='datetime' value='". $flight["date"] ."' name='editDate'></td>";
                             echo "<td><input  type='number' value='". $flight["duration"] ."' name='editDuration'></td>";
@@ -310,7 +310,7 @@ function validateInput($data){
 
                         }
                         catch(PDOException $e){
-                            die($e->errorInfo());
+                            //die($e->errorInfo());
                         }
                     echo "<td><input type='text' name='date' placeholder='dd/mm/yyyy hh:mm'></td>";
                     echo "<td><input type='number' name='duration'></td>";

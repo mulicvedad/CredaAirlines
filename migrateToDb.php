@@ -7,7 +7,7 @@ try {
     $xml_flights=simplexml_load_file("data/xml/flights.xml");
     $xml_users=simplexml_load_file("data/xml/xml_account");
 
-    $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME, DBInfo::$PASSWORD);
+    $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME, DBInfo::$PASSWORD);
     $connection->exec("set names utf8");
 
     $cities=$connection->query("select * from city");

@@ -47,7 +47,7 @@ class Account extends DBEntity
 
     public function saveToDb(){
       try {
-        $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+        $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
         $connection->exec("set names utf8");
 
         $stmt=$connection->prepare("select id from city where name=?");
@@ -78,10 +78,10 @@ class Account extends DBEntity
 
 
     }
-
+  public function updateDb(){}
     public function deleteFromDb(){
       try {
-            $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+            $connection = new PDO(DBInfo::DB_CONNECTION_STRING(), DBInfo::$USERNAME,DBInfo::$PASSWORD);
             $connection->exec("set names utf8");
 
             $sql="select count(*) from ". self::$tableName ." where username=?";
