@@ -1,6 +1,7 @@
 <?php
 require "DBInfo.php";
-class Account
+require "DBEntity.php";
+class Account extends DBEntity
 {
     private static $XML_FILEPATH="data/xml/xml_account";
     private static $XML_NODE_NAME="account";
@@ -80,27 +81,27 @@ class Account
 
     public function deleteFromDb(){
       try {
-        $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
-        $connection->exec("set names utf8");
+            $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+            $connection->exec("set names utf8");
 
-        $sql="select count(*) from ". self::$tableName ." where username=?";
-        $prep=$connection->prepare($sql);
-        $prep->bindValue(1, $this->username);
-        $prep->execute();
+            $sql="select count(*) from ". self::$tableName ." where username=?";
+            $prep=$connection->prepare($sql);
+            $prep->bindValue(1, $this->username);
+            $prep->execute();
 
-        if($prep->fetchColumn()==0){
-          return 2;
-        }
+            if($prep->fetchColumn()==0){
+              return 2;
+            }
 
-        $sql="delete from ". self::$tableName ." where username=?";
-        $stmt=$connection->prepare($sql);
-        $stmt->bindValue(1, $this->username);
-        $stmt->execute();
+            $sql="delete from ". self::$tableName ." where username=?";
+            $stmt=$connection->prepare($sql);
+            $stmt->bindValue(1, $this->username);
+            $stmt->execute();
 
-        return 0;
-      } catch (PDOException $e) {
-        die($e->errorInfo());
-        return 3;
-      }
+            return 0;
+          } catch (PDOException $e) {
+            die($e->errorInfo());
+            return 3;
+          }
     }
 }

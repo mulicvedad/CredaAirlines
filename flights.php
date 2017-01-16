@@ -164,7 +164,7 @@ function validateInput($data){
                 <li><a href="index.php">MAKE A RESERVATION</a></li>
                 <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
                 <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
-                <li><a onclick="navigationItemClicked(5)" href="Register.php">REGISTER</a> </li>
+                <li><a onclick="navigationItemClicked(5)" href="register.php">REGISTER</a> </li>
             </ul>
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
@@ -174,7 +174,7 @@ function validateInput($data){
                     <li class="dropdown-item"><a href="index.php">Make a reservation</a></li>
                     <li class="dropdown-item"><a href="About.html">About us</a> </li>
                     <li class="dropdown-item"><a href="Contact.html">Contact</a> </li>
-                    <li class="dropdown-item"><a href="Register.php">Register</a> </li>
+                    <li class="dropdown-item"><a href="register.php">Register</a> </li>
                 </div>
             </div>
         </div>
