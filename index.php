@@ -28,9 +28,9 @@
         </div>
         <div class="header bottom">
             <ul class="nav">
-                <li><a href="MainPage.php">HOME</a> </li>
+                <li><a href="index.php">HOME</a> </li>
                 <li><a onclick="navigationItemClicked(1)" href="flights.php">FLIGHTS</a> </li>
-                <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
+                <li><a href="index.php">MAKE A RESERVATION</a></li>
                 <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
                 <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
                 <li><a onclick="navigationItemClicked(5)" href="Register.php">REGISTER</a> </li>
@@ -38,9 +38,9 @@
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
                 <div id="dropdownContent" class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.php">Home</a> </li>
+                    <li class="dropdown-item"><a href="index.php">Home</a> </li>
                     <li class="dropdown-item"><a href='flights.php'>Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.php">Make a reservation</a></li>
+                    <li class="dropdown-item"><a href="index.php">Make a reservation</a></li>
                     <li class="dropdown-item"><a href="About.html">About us</a> </li>
                     <li class="dropdown-item"><a href="Contact.html">Contact</a> </li>
                     <li class="dropdown-item"><a href="Register.php">Register</a> </li>
@@ -62,6 +62,16 @@ if(isset($_SESSION["username"])){
         echo "<div class='column twelve' id='user-info'>";
         echo "<button class='report'> <a class='report' href='generate_csv.php'>CSV Report </a> </button>";
         echo "<button class='report'> <a class='report' href='generate_pdf.php'>PDF Report </a> </button>";
+        echo "<button class='report'> <a class='report' href='migrateToDb.php'>Migrate to Database</a> </button>";
+        echo "<button class='report'> <a class='report' href='cities.php'>Manage Cities</a> </button>";
+        if(isset($_REQUEST["succ"])){
+          if($_REQUEST["succ"]==1){
+            echo "<script>alert ('Migration was completed successfully!') </script>";
+          }
+          else{
+            echo "<script>alert ('An error occured during migration!') </script>";
+          }
+        }
         echo "<button id='user-info-button'> <a href='logout.php'>Log Out </a> </button>";
         echo "<p id='user-info-p'>Logged in as admin  </p>";
         echo "</div>";
@@ -104,7 +114,7 @@ else{
 
             </div>
 
-            <a class="read-more-link" href="MainPage.php"> Read more... </a>
+            <a class="read-more-link" href="index.php"> Read more... </a>
 
 
         </div>
@@ -131,7 +141,7 @@ else{
                         successor in 1908, and easily defeated William Jennings Bryan for the presidency. In the White...
                 </div>
             </div>
-            <a class="read-more-link" href="MainPage.php"> Read more... </a>
+            <a class="read-more-link" href="index.php"> Read more... </a>
         </div>
         <div class="column eleven news-container">
             <div class="row">
@@ -159,7 +169,7 @@ else{
 
             </div>
 
-            <a class="read-more-link" href="MainPage.php"> Read more... </a>
+            <a class="read-more-link" href="index.php"> Read more... </a>
 
 
         </div>

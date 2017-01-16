@@ -7,7 +7,12 @@ function preventXSS($data){
     $data = htmlspecialchars($data);
     return $data;
 }
-
+function isDateValid($data){
+    if(strlen($data) == 0){
+        return false;
+    }
+    return true;
+}
 function isUsernameValid($data){
     if(strlen($data) == 0 || !preg_match("~^[a-zA-Z0-9_ ]+$~", strval($data))){
         return false;
@@ -57,4 +62,3 @@ function isPositiveNumber($data){
 
     return true;
 }
-

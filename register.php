@@ -1,9 +1,10 @@
 <?php
 require "validation.php";
 require "Account.php";
+session_start();
 
 $firstName=$lastName=$email=$username=$password=$confirmPassword="";
-$firstNameError=$lastNameError=$emailError=$usernameError=$passwordError=$confirmPasswordError="";
+$dbError=$firstNameError=$lastNameError=$emailError=$usernameError=$passwordError=$confirmPasswordError="";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $_POST = array(); //workaround for broken PHPstorm
@@ -18,6 +19,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username=preventXSS($_POST["registerUsername"]);
         $password=preventXSS($_POST["registerPassword"]);
         $confirmPassword=preventXSS($_POST["registerConfirmPassword"]);
+        $city=preventXSS($_POST["city"]);
+
         $isValid=true;
         if(!isNameValid($firstName)){
             $firstNameError="'First name' field can contain only letters and cannot be empty. <br>";
@@ -52,8 +55,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         if($isValid){
-            $account=new Account($firstName, $lastName, $email, $username);
-            $account->serialize();
+            $account=new Account($firstName, $lastName, $email, $username,md5($password), $city);
+            $status=$account->saveToDb();
+            if($status!=0){
+              $dbError=DBInfo::getMesssageForErrorCode($status);
+            }
             $firstName="";
             $lastName="";
             $email="";
@@ -92,9 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div class="header bottom">
             <ul class="nav">
-                <li><a href="MainPage.php">HOME</a> </li>
+                <li><a href="index.php">HOME</a> </li>
                 <li><a onclick="navigationItemClicked(1)" href="flights.php">FLIGHTS</a> </li>
-                <li><a href="MainPage.php">MAKE A RESERVATION</a></li>
+                <li><a href="index.php">MAKE A RESERVATION</a></li>
                 <li><a onclick="navigationItemClicked(3)" href="About.html">ABOUT US</a> </li>
                 <li><a onclick="navigationItemClicked(4)" href="Contact.html">CONTACT</a> </li>
                 <li><a onclick="navigationItemClicked(5)" href="Register.php">REGISTER</a> </li>
@@ -102,9 +108,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="dropdown">
                 <span onclick="dropDownClicked(this)">Menu</span>
                 <div id="dropdownContent" class="dropdown-content">
-                    <li class="dropdown-item"><a href="MainPage.php">Home</a> </li>
+                    <li class="dropdown-item"><a href="index.php">Home</a> </li>
                     <li class="dropdown-item"><a href='flights.php'>Flights</a> </li>
-                    <li class="dropdown-item"><a href="MainPage.php">Make a reservation</a></li>
+                    <li class="dropdown-item"><a href="index.php">Make a reservation</a></li>
                     <li class="dropdown-item"><a href="About.html">About us</a> </li>
                     <li class="dropdown-item"><a href="Contact.html">Contact</a> </li>
                     <li class="dropdown-item"><a href="Register.php">Register</a> </li>
@@ -117,7 +123,55 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <div class="row main">
+  <div class="row">
+    <div class="column twelve" id="deleteUser" style=" background-color:lightgrey">
 
+                  <form name="deleteUserForm" action="deleteUser.php" method="POST">
+
+
+                          <?php
+
+
+                          $isAdmin=false;
+                          if(isset($_SESSION["username"])){
+                              if($_SESSION["username"] == "admin"){
+                                  $isAdmin=true;
+                              }
+                          }
+                          if($isAdmin){
+                            try{
+                                 $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                                 $connection->exec("set names utf8");
+                               if($users=$connection->query("select * from user")){
+                                   if($connection->query("select count(*) from user")->fetchColumn()){
+
+                                       echo "<select name='user' style='height:30px'>";
+                                       foreach($users->fetchAll() as $user){
+                                            echo "<option value=". $user["username"] . ">" . $user["username"]   . "</option>";
+                                       }
+                                       echo "</select>";
+                                       echo "<input id='deleteButton' type='submit' value='Delete user'>";
+                                   }
+                                   else{
+                                       echo "No users found.";
+                                   }
+                               }
+                               else{
+                                   echo "Error reading database.";
+                               }
+
+                            }
+                            catch(PDOException $e){
+                                die($e->errorInfo());
+                            }
+                          }
+
+
+                          ?>
+                      </form>
+    </div>
+
+  </div>
         <div class="column eight register-container">
             <div class="row">
                 <div class="column twelve register-field">
@@ -158,6 +212,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <input onblur="validateEmail(this)" class="register-field" name="registerEmail" type="text" value=<?=$email?>>
                         <p class="errorField" id="emailErrorField">
                         </p>
+                    </div>
+
+                </div>
+                 <div class="row">
+
+                    <div class="column five register-field">
+                        <p class="register-label">City:</p>
+                    </div>
+                    <div class="column seven register-field">
+                        <?php
+                        try{
+                             $connection = new PDO(DBInfo::$DB_CONNECTION_STRING, DBInfo::$USERNAME,DBInfo::$PASSWORD);
+                             $connection->exec("set names utf8");
+                           if($cities=$connection->query("select * from city")){
+                               if($connection->query("select count(*) from city")->fetchColumn()){
+                                   echo "<select name='city' style='height:30px'>";
+                                   foreach($cities->fetchAll() as $city){
+                                        echo "<option value=". $city["name"] . ">" . $city["name"]  . "</option>";
+                                   }
+                                   echo "</select>";
+                               }
+                               else{
+                                   echo "No Cities Found.";
+                               }
+                           }
+                           else{
+                               echo "Error reading database.";
+                           }
+
+                        }
+                        catch(PDOException $e){
+                            die($e->errorInfo());
+                        }
+
+                        ?>
                     </div>
 
                 </div>
@@ -217,8 +306,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         echo $usernameError;
                         echo $passwordError;
                         echo $confirmPasswordError;
+                        echo $dbError;
                         ?>
                     </div>
+                </div>
+
                 </div>
 
             </form>

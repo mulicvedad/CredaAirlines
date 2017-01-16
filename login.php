@@ -2,8 +2,7 @@
 $_POST = array(); //workaround for broken PHPstorm
 parse_str(file_get_contents('php://input'), $_POST);
 
-include "Account.php";
-include "Flight.php";
+include "Account.php";;
 require "validation.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -17,10 +16,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($admin->username == $username && $admin->password == $password){
             session_start();
             $_SESSION["username"]="admin";
+            echo '<script>';
+            echo 'alert("Successfully logged in");';
+            echo "window.location.href = 'index.php';";
 
+            echo '</script>';
+            exit();
         }
     }
-    echo "<script>window.location.href = 'MainPage.php'</script>";
+
+    echo '<script>';
+    echo 'alert("Wrong password and/or username.");';
+    echo "window.location.href = 'index.php';";
+
+    echo '</script>';
+
 }
 
 
